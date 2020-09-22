@@ -3,7 +3,7 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable('questions', { 
-      question_id: {
+      id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         unique: true,
-        references: { model:'lessons', key: 'lesson_id' },
+        references: { model:'lessons', key: 'id' },
       },
       question: {
         type: Sequelize.STRING,
@@ -25,6 +25,14 @@ module.exports = {
       },
       right_answer: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
         allowNull: false,
       }
     });

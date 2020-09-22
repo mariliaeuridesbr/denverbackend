@@ -6,13 +6,21 @@ module.exports = {
       lesson_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model:'lessons', key: 'lesson_id' },
+        references: { model:'lessons', key: 'id' },
       },
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model:'users', key: 'user_id' },
-      }
+        references: { model:'users', key: 'id' },
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
   },
 

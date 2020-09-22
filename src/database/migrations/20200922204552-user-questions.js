@@ -6,17 +6,25 @@ module.exports = {
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model:'users', key: 'user_id' },
+        references: { model:'users', key: 'id' },
       },
       question_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: { model:'questions', key: 'question_id' },
+        references: { model:'questions', key: 'id' },
       },
       answer: {
         type: Sequelize.INTEGER,
         allowNull: true,
-      }
+      },
+      created_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updated_at: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
     });
   },
 
