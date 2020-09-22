@@ -34,11 +34,6 @@ module.exports = {
          type: Sequelize.DATEONLY,
          allowNull: false,
        },
-       finished_lessons: {
-         type: Sequelize.ARRAY(Sequelize.TEXT),
-         allowNull: true,
-         references: { model: 'lessons', key: 'lesson_id' },
-       }
      });
   },
 
