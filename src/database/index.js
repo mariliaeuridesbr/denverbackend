@@ -16,4 +16,3 @@ models.map((model) => model.init(connection));
 models.map((model) => model.associate && model.associate(connection.models));
 
 module.exports = connection;
-
