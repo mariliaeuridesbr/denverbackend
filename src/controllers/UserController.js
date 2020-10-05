@@ -13,4 +13,33 @@ module.exports = {
 
         return res.json(user);
     },
+    async update (req, res){
+        const { id } = req.params;
+        const { name, age, email, password, image, birthdate } = req.body;
+
+        const user = await User.findOne({ where:{ id } });
+
+        if(!user){
+            return res.status(401).send('User not found');
+        }
+
+        user.update({ name, age, email, password, image, birthdate });
+
+        user.save();
+
+        return res.json(user);
+    },
+    async delete(req, res){
+        const { id } = req.params;
+
+        const user = User.findOne({ where:{ id } }); 
+
+        if(!user){
+            return res.status(401).send('User not found');
+        }
+
+        user.destroy();
+
+        return res.send(`User ${id} deleted.`);
+    }
 }

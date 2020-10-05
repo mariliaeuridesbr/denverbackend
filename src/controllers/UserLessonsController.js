@@ -1,13 +1,10 @@
-const User = require('../models/User');
-const Lessons = require('../models/Lessons');
 const User_lessons = require('../models/User_lessons');
-const { where } = require('sequelize');
 
 module.exports = {
     async index (req,res){
         const { id } = req.params;
         
-        const userLessons = await User_lessons.findAll({ where: { user_id: id } });
+        const userLessons = await User_lessons.findAll({ where: { user_id: { id } } });
 
         return res.json(userLessons);
     },
@@ -20,11 +17,18 @@ module.exports = {
         return res.json(userLesson);
     },
 
-    async patch (req,res){
-
-    },
-
     async delete (req,res){
+        const { user_id } = req.params;
+        const { lesson_id } = req.params.lesson_id;
+        
+        const userLessons = await User_lessons.findOne({ where: { user_id, lesson_id  } });
+ 
+        if (!userLessons){
+            return res.status(401).send('User or Lesson not found');
+        }
 
+        userLessons.destroy();
+
+        return res.send('Relation deleted');
     }
 }

@@ -13,4 +13,33 @@ module.exports = {
 
         return res.json(lesson);
     },
+    async update (req, res) {
+        const { id } = req.params;
+        const { title, description, video} = req.body;
+
+        const lesson = await Lessons.findOne({ where: { id } });
+
+        if (!lesson){
+            return res.status(401).send('Lesson not found');
+        }
+
+        lesson.update({ title, description, video });
+
+        lesson.save();
+
+        return res.json(lesson); 
+    },
+    async delete(req, res){
+        const { id } = req.params;
+
+        const lesson = await Lessons.findOne({ where: { id } });
+
+        if(!lesson){
+            return res.status(401).send('Lesson not found!');
+        }
+        
+        lesson.destroy();
+
+        return res.send(`Lesson ${id} deleted.`);
+    }
 }
