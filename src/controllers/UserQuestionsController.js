@@ -18,7 +18,7 @@ module.exports = {
     },
 
     async delete (req,res){
-        const { user_id } = req.params;
+        const { user_id } = req.params; 
         const { question_id } = req.params.question_id;
         
         const userQuestions = await User_questions.findOne({ where: { user_id, question_id  } });

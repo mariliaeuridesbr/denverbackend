@@ -11,7 +11,7 @@ module.exports = {
 
         const quest = await Question.create({ question, answers, right_answer, lesson_id });
 
-        return res.json(quest);
+        return res.json(quest); 
     },
 
     async update(req, res){

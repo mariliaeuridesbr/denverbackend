@@ -7,7 +7,7 @@ const SessionController = require('./controllers/SessionController');
 const UserQuestionsController = require('./controllers/UserQuestionsController');
 const UserLessonsController = require('./controllers/UserLessonsController');
 
-const authMiddleware = require('./middlewares/auth');
+const authMiddleware = require('./middlewares/auth'); 
 
 const routes = express.Router();
 

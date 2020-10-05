@@ -32,7 +32,7 @@ module.exports = {
     async delete(req, res){
         const { id } = req.params;
 
-        const user = User.findOne({ where:{ id } });
+        const user = User.findOne({ where:{ id } }); 
 
         if(!user){
             return res.status(401).send('User not found');

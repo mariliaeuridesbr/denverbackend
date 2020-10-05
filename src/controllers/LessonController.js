@@ -27,7 +27,7 @@ module.exports = {
 
         lesson.save();
 
-        return res.json(lesson);
+        return res.json(lesson); 
     },
     async delete(req, res){
         const { id } = req.params;

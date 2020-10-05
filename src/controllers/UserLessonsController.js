@@ -22,7 +22,7 @@ module.exports = {
         const { lesson_id } = req.params.lesson_id;
         
         const userLessons = await User_lessons.findOne({ where: { user_id, lesson_id  } });
-
+ 
         if (!userLessons){
             return res.status(401).send('User or Lesson not found');
         }
