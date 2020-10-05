@@ -11,7 +11,7 @@ class Lessons extends Model{
         });
     }
     static associate(models) {
-        this.hasMany(models.Question, { foreignKey: 'question_id', as: 'questions' });
+        this.hasMany(models.Question, { foreignKey: 'id', as: 'questions' });
     }
 }
 

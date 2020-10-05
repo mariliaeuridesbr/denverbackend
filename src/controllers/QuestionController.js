@@ -1,5 +1,5 @@
 const Question = require("../models/Question");
-const Lessons = require("../models/Lessons")
+const Lessons = require("../models/Lessons");
 
 module.exports = {
     async index (req, res){
@@ -8,17 +8,40 @@ module.exports = {
         return res.json(questions);
     },
     async store (req, res) {
-        const { lessonid } = req.params;
         const { question, answers, right_answer, lesson_id } = req.body;
 
-        const lessons = await Lessons.findByPk(lessonid);
+        const quest = await Question.create({ question, answers, right_answer, lesson_id });
 
-        if(!lessons){
-            return res.status(400).json({ error: 'Lesson not found' });
+        return res.json(quest);
+    },
+
+    async update(req, res){
+        const { id } = req.params;
+        const { question, answers, right_answer } = req.body;
+
+        const quest = await Question.findOne({ where: { id }});
+
+        if (!quest){
+            return res.status(401).send('Question not found');
         }
 
-        const questions = await Question.create({ question, answers, right_answer, lesson_id });
+        quest.update({ question, answers, right_answer });
 
-        return res.json(questions);
+        quest.save();
+
+        return res.json(quest);
     },
+    async delete(req, res){
+        const { id } = req.params;
+
+        const question = await Question.findOne({ where: { id } });
+
+        if(!question){
+            return res.status(401).send('Question not found!');
+        }
+        
+        question.destroy();
+
+        return res.send(`Question ${id} deleted.`);
+    }
 }
