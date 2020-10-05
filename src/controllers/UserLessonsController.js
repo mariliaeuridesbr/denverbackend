@@ -19,7 +19,7 @@ module.exports = {
 
     async delete (req,res){
         const { user_id } = req.params;
-        const { lesson_id } = req.params.questionid;
+        const { lesson_id } = req.params.lesson_id;
         
         const userLessons = await User_lessons.findOne({ where: { user_id, lesson_id  } });
 

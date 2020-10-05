@@ -1,5 +1,4 @@
 const Question = require("../models/Question");
-const Lessons = require("../models/Lessons");
 
 module.exports = {
     async index (req, res){
