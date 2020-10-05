@@ -30,4 +30,12 @@ routes.post('/questions', QuestionController.store);
 routes.patch('/questions/:id', QuestionController.update);
 routes.delete('/questions/:id', QuestionController.delete);
 
+routes.get('/userquestions', UserQuestionsController.index);
+routes.post('/userquestions', UserQuestionsController.store);
+routes.delete('/userquestions/:userid/:question_id', UserQuestionsController.delete);
+
+routes.get('/userlessons', UserLessonsController.index);
+routes.post('/userlessons', UserLessonsController.store);
+routes.delete('/userlessons/:userid/:lesson_id', UserLessonsController.delete);
+
 module.exports = routes;
