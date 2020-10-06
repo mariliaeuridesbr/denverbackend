@@ -4,7 +4,7 @@ module.exports = {
     async index (req,res){
         const { id } = req.params;
         
-        const userQuestions = await User_questions.findAll({ where: { user_id: { id } } });
+        const userQuestions = await User_questions.findAll({ where: { user_id: id } });
 
         return res.json(userQuestions);
     },
@@ -18,16 +18,16 @@ module.exports = {
     },
 
     async delete (req,res){
-        const { user_id } = req.params; 
+        const { user_id } = req.params.user_id; 
         const { question_id } = req.params.question_id;
-        
-        const userQuestions = await User_questions.findOne({ where: { user_id, question_id  } });
+  
+        const userQuestion = await User_questions.findOne({ where: { user_id, question_id } });
 
-        if (!userQuestions){
+        if (!userQuestion){
             return res.status(401).send('User or Question not found');
         }
 
-        userQuestions.destroy();
+        userQuestion.destroy();
 
         return res.send('Relation deleted');
     }

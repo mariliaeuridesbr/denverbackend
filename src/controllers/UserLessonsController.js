@@ -4,7 +4,7 @@ module.exports = {
     async index (req,res){
         const { id } = req.params;
         
-        const userLessons = await User_lessons.findAll({ where: { user_id: { id } } });
+        const userLessons = await User_lessons.findAll({ where: { user_id: id } });
 
         return res.json(userLessons);
     },
@@ -18,10 +18,9 @@ module.exports = {
     },
 
     async delete (req,res){
-        const { user_id } = req.params;
-        const { lesson_id } = req.params.lesson_id;
+        const { user_id, lesson_id } = req.params;
         
-        const userLessons = await User_lessons.findOne({ where: { user_id, lesson_id  } });
+        const userLessons = await User_lessons.findOne({ where: { user_id, lesson_id }});
  
         if (!userLessons){
             return res.status(401).send('User or Lesson not found');
