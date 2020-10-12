@@ -7,6 +7,8 @@ const SessionController = require('./controllers/SessionController');
 const UserQuestionsController = require('./controllers/UserQuestionsController');
 const UserLessonsController = require('./controllers/UserLessonsController');
 
+const UserValidator = require('./validators/UserStore');
+
 const authMiddleware = require('./middlewares/auth'); 
 
 const routes = express.Router();
@@ -14,7 +16,7 @@ const routes = express.Router();
 routes.get('/auth', (req, res) => res.send('Authenticated.'));
 
 routes.get('/users', UserController.index);
-routes.post('/users', UserController.store);
+routes.post('/users', UserValidator, UserController.store);
 routes.patch('/users/:id', UserController.update);
 routes.delete('/users/:id', UserController.delete);
 
