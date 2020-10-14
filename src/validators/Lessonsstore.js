@@ -1,11 +1,20 @@
-const yup = require("yup")
-const Lessons = require("../models/Lessons")
+const yup = require("yup");
 
-const schema = yup.object().shape({
-    title: yup.string().required(),
-    description: yup.string().required(),
-    video: yup.string().required(),
-});
+const lessons = async (req, res, next) => {
+    try{
+        const schema = yup.object().shape({
+            title: yup.string().required(),
+            description: yup.string().required(),
+            video: yup.string().required(),
+        });
+        schema.validate(req.body);
+        
+        return next();
+    } catch (err) {
+        return res.status(400).json({
+            message: "Validação falhou!",
+        })
+    }
+};
 
-
-await schema.validate(req.body,{abortEarly: false});
+module.exports = lessons;

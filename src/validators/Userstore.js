@@ -1,12 +1,22 @@
 const yup = require("yup");
-const User = require("../models/User")
 
-const schema = yup.object().shape({
-    name: yup.string().required(),
-    age: yup.number().required().positive().integer(),
-    email: yup.string().email().required(),
-    password:yup.string().required().min(6),
-    birthdate: yup.string().required(),
-  });
+const user = async (req, res, next) => {
+  try{
+      const schema = yup.object().shape({
+          name: yup.string().required(),
+          age: yup.number().required().positive().integer(),
+          email: yup.string().email(),
+          password: yup.string().min(6).required(),
+          birthdate: yup.date().required(),
+      });
+      schema.validate(req.body);
+      
+      return next();
+  } catch (err) {
+      return res.status(400).json({
+          message: "Validação falhou!",
+      })
+  }
+};
 
-  await schema.validate(req.body,{abortEarly: false});
+module.exports = user;

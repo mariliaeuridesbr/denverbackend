@@ -1,9 +1,19 @@
 const yup = require("yup");
-const User_lessons = require("../models/User_lessons");
 
-const schema = yup.object().shape({
+const userLessons = async (req, res, next) => {
+    try{
+        const schema = yup.object().shape({
+            user_id: yup.number().positive().integer().required(),
+            lesson_id: yup.number().positive().integer().required(),
+        });
+        schema.validate(req.body);
+        
+        return next();
+    } catch (err) {
+        return res.status(400).json({
+            message: "Validação falhou!",
+        })
+    }
+};
 
-
-});
-
-await schema.validate(req.body,{abortEarly: false});
+module.exports = userLessons;
