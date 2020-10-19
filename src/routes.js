@@ -1,4 +1,5 @@
 const express = require('express');
+const acl = require("express-acl");
 
 const UserController = require('./controllers/UserController');
 const LessonController = require('./controllers/LessonController');
@@ -14,6 +15,9 @@ const userLessonsValidator = require('./validators/User_lessons_store');
 const userQuestionsValidator = require('./validators/User_questions_store');
 
 const authMiddleware = require('./middlewares/auth'); 
+
+routes.use(auth);
+routes.use(acl.authorize);
 
 const routes = express.Router();
 
