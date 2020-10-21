@@ -13,12 +13,17 @@
       "group": "moderator",
       "permissions": [
         {
-          "resource": "notices/*",
-          "methods": ["POST", "GET"],
+          "resource": "lessons/*",
+          "methods": ["POST", "GET", "PATCH", "DELETE"],
           "action": "allow"
         },
         {
-          "resource": "profile/*",
+          "resource": "questions/*",
+          "methods": ["POST", "GET", "PATCH", "DELETE"],
+          "action": "allow"
+        },
+        {
+          "resource": "users/*",
           "methods": ["GET"],
           "action": "allow"
         }
@@ -28,13 +33,18 @@
       "group": "auth",
       "permissions": [
         {
-          "resource": "notices/*",
+          "resource": "lessons/*",
           "methods": ["GET"],
           "action": "allow"
         },
         {
-          "resource": "profile/*",
+          "resource": "questions/*",
           "methods": ["GET"],
+          "action": "allow"
+        },
+        {
+          "resource": "users/*",
+          "methods": ["POST"],
           "action": "allow"
         }
       ]

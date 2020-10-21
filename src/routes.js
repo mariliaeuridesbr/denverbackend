@@ -16,10 +16,10 @@ const userQuestionsValidator = require('./validators/User_questions_store');
 
 const authMiddleware = require('./middlewares/auth'); 
 
-routes.use(auth);
-routes.use(acl.authorize);
-
 const routes = express.Router();
+
+routes.use(authMiddleware);
+routes.use(acl.authorize);
 
 routes.get('/auth', (req, res) => res.send('Authenticated.'));
 

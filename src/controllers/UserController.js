@@ -7,15 +7,15 @@ module.exports = {
         return res.json(users);
     },
     async store (req, res) {
-        const { name, age, email, password, image, birthdate } = req.body;
+        const { name, age, email, password, image, birthdate, role } = req.body;
 
-        const user = await User.create({ name, age, email, password, image, birthdate });
+        const user = await User.create({ name, age, email, password, image, birthdate, role });
 
         return res.json(user);
     },
     async update (req, res){
         const { id } = req.params;
-        const { name, age, email, password, image, birthdate } = req.body;
+        const { name, age, email, password, image } = req.body;
 
         const user = await User.findOne({ where:{ id } });
 
@@ -23,7 +23,7 @@ module.exports = {
             return res.status(401).send('User not found');
         }
 
-        user.update({ name, age, email, password, image, birthdate });
+        user.update({ name, age, email, password, image });
 
         user.save();
 
