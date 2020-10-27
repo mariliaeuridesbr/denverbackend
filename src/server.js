@@ -3,14 +3,14 @@ const routes = require('./routes');
 const acl = require("express-acl");
 const {config,responseObject} = require("./config/acl");
 
+require('express-async-errors');
 require('./database');
 
 const app = express();
 
 app.use(express.json());
 
-app.use(routes);
-
 acl.config(config, responseObject);
+app.use(routes);
 
 app.listen(3030);

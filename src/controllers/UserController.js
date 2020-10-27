@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Role = require("../models/Role");
 
 module.exports = {
     async index (req, res){
@@ -9,7 +10,11 @@ module.exports = {
     async store (req, res) {
         const { name, age, email, password, image, birthdate, role } = req.body;
 
-        const user = await User.create({ name, age, email, password, image, birthdate, role });
+        const defaultRole = await Role.findOne({
+            where: { tag: 'user' }
+        });
+
+        const user = await User.create({ name, age, email, password, image, birthdate, role_id: defaultRole.id });
 
         return res.json(user);
     },

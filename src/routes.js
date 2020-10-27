@@ -7,6 +7,7 @@ const QuestionController = require('./controllers/QuestionController');
 const SessionController = require('./controllers/SessionController');
 const UserQuestionsController = require('./controllers/UserQuestionsController');
 const UserLessonsController = require('./controllers/UserLessonsController');
+const RolesController = require('./controllers/RolesController');
 
 const userValidator = require('./validators/Userstore');
 const lessonsValidator = require('./validators/Lessonsstore');
@@ -16,7 +17,6 @@ const userQuestionsValidator = require('./validators/User_questions_store');
 
 const authMiddleware = require('./middlewares/auth');
 const roleMiddleware = require('./middlewares/role'); 
-const RolesController = require('./controllers/RolesController');
 
 const routes = express.Router();
 
@@ -26,6 +26,8 @@ routes.post('/sessions', SessionController.store);
 routes.post('/users', userValidator, UserController.store);
 routes.post('/role', RolesController.store);
 
+routes.use(authMiddleware);
+routes.use((req, res, next) => {console.log('oi'); return next()})
 routes.use(roleMiddleware);
 routes.use(acl.authorize);
 
