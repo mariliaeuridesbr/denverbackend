@@ -30,7 +30,7 @@
       ]
     },
     {
-      "group": "auth",
+      "group": "user",
       "permissions": [
         {
           "resource": "lessons/*",

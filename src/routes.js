@@ -14,21 +14,28 @@ const questionsValidator = require('./validators/Questionsstore');
 const userLessonsValidator = require('./validators/User_lessons_store');
 const userQuestionsValidator = require('./validators/User_questions_store');
 
-const authMiddleware = require('./middlewares/auth'); 
+const authMiddleware = require('./middlewares/auth');
+const roleMiddleware = require('./middlewares/role'); 
+const RolesController = require('./controllers/RolesController');
 
 const routes = express.Router();
-
-routes.use(authMiddleware);
-routes.use(acl.authorize);
 
 routes.get('/auth', (req, res) => res.send('Authenticated.'));
 
 routes.post('/sessions', SessionController.store);
+routes.post('/users', userValidator, UserController.store);
+routes.post('/role', RolesController.store);
+
+routes.use(roleMiddleware);
+routes.use(acl.authorize);
 
 routes.get('/users', UserController.index);
 routes.post('/users', userValidator, UserController.store);
 routes.patch('/users/:id', userValidator, UserController.update);
 routes.delete('/users/:id', UserController.delete);
+
+routes.get('/role/:id', RolesController.index);
+routes.patch('/role/:id', RolesController.update);
 
 routes.get('/lessons', LessonController.index);
 routes.post('/lessons', lessonsValidator, LessonController.store);

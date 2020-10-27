@@ -34,6 +34,11 @@ module.exports = {
          type: Sequelize.DATEONLY,
          allowNull: false,
        },
+       role: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: { model:'roles', key: 'id' },
+      },
        created_at: {
         type: Sequelize.DATE,
         allowNull: false,

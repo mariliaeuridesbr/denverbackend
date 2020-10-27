@@ -15,7 +15,7 @@ module.exports = {
     },
     async update (req, res){
         const { id } = req.params;
-        const { name, age, email, password, image } = req.body;
+        const { name, age, email, password, image, role } = req.body;
 
         const user = await User.findOne({ where:{ id } });
 
@@ -23,7 +23,7 @@ module.exports = {
             return res.status(401).send('User not found');
         }
 
-        user.update({ name, age, email, password, image });
+        user.update({ name, age, email, password, image, role });
 
         user.save();
 
