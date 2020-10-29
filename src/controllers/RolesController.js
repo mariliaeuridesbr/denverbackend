@@ -9,7 +9,7 @@ module.exports = {
         return res.json(role);
     },
     async store (req, res) {
-        const { tag, name, user } = req.body;
+        const { tag, name } = req.body;
 
         const role = await Role.create({ tag, name });
 

@@ -8,7 +8,7 @@ const user = async (req, res, next) => {
           email: yup.string().email(),
           password: yup.string().min(6).required(),
           birthdate: yup.date().required(),
-          role: yup.number().required().positive().integer(),
+          role: yup.number().positive().integer(),
       });
       schema.validate(req.body);
       

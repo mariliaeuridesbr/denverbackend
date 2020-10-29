@@ -10,7 +10,7 @@ function auth (req, res, next){
 
     try {
         const payload = jwt.verify(token, process.env.APP_SECRET);
-        req.id = payload.id;
+        req.id = payload.userId;
         return next();
     } catch (err) {
         return res.status(401).send('Invalid token'); 

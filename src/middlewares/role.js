@@ -1,15 +1,26 @@
 const User = require('../models/User');
+const Role = require('../models/Role');
 
-function role (req, res, next){
+async function role (req, res, next){
     const id = req.id;
     
-    const user = User.findOne({ where: { id }});
-    
+    const user = await User.findOne({ 
+        where: { id },
+        include: [{
+            model: Role,
+            as: 'role'
+        }]
+    });
+
     try {
-        req.user.role = user.role;
+        req.decoded = {
+            role: user.role.tag
+        }
+
         return next();
     } catch (err) {
-        return res.status(401); 
+        console.log(err);
+        return res.status(401).send('Error with role'); 
     }
 }
 
