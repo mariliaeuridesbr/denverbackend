@@ -8,7 +8,7 @@ module.exports = {
         return res.json(users);
     },
     async store (req, res) {
-        const { name, age, email, password, image, birthdate, role } = req.body;
+        const { name, age, email, password, image, birthdate } = req.body;
 
         const defaultRole = await Role.findOne({
             where: { tag: 'user' }
