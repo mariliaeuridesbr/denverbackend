@@ -13,4 +13,4 @@ app.use(express.json());
 acl.config(config, responseObject);
 app.use(routes);
 
-app.listen(3030);
+app.listen(process.env.PORT || 3030);
