@@ -1,0 +1,13 @@
+require('dotenv/config');
+
+module.exports = {
+    dialect: 'postgres',
+    production: {
+        "use_env_variable": "DATABASE_URL"
+    },
+    url: process.env.DATABASE_URL,
+    define: {
+        timestamps: true,
+        underscored: true,
+    },
+}
