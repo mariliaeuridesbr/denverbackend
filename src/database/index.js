@@ -10,7 +10,7 @@ const Role = require('../models/Role');
 
 const models = [User, Lessons, Question, User_questions, User_lessons, Role];
 
-const connection = new Sequelize(dbconfig);
+const connection = new Sequelize(dbconfig.production);
 
 models.map((model) => model.init(connection));
 
