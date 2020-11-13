@@ -9,6 +9,8 @@ require('./database');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.use(express.json());
 
 acl.config(config, responseObject);
