@@ -26,9 +26,9 @@ routes.post('/sessions', SessionController.store);
 routes.post('/users', userValidator, UserController.store);
 routes.post('/role', RolesController.store);
 
-routes.use(authMiddleware);
+//routes.use(authMiddleware);
 routes.use((req, res, next) => {console.log('oi'); return next()})
-routes.use(roleMiddleware);
+//routes.use(roleMiddleware);
 routes.use(acl.authorize);
 
 routes.get('/users', UserController.index);
