@@ -2,7 +2,6 @@ const express = require('express');
 const routes = require('./routes');
 //const acl = require("express-acl");
 //const {config,responseObject} = require("./config/acl");
-const { Client } = require('pg');
 
 require('express-async-errors');
 require('./database');
