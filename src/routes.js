@@ -1,5 +1,5 @@
 const express = require('express');
-const acl = require("express-acl");
+//const acl = require("express-acl");
 
 const UserController = require('./controllers/UserController');
 const LessonController = require('./controllers/LessonController');
@@ -29,7 +29,7 @@ routes.post('/role', RolesController.store);
 //routes.use(authMiddleware);
 routes.use((req, res, next) => {console.log('oi'); return next()})
 //routes.use(roleMiddleware);
-routes.use(acl.authorize);
+//routes.use(acl.authorize);
 
 routes.get('/users', UserController.index);
 routes.post('/users', userValidator, UserController.store);
