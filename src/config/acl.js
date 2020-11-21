@@ -1,7 +1,7 @@
 const config = {
   baseUrl: "/",
   filename: "nacl.json",
-  roleSearchPath: "user.role",
+  //roleSearchPath: "user.role",
 };
   
 const responseObject = {
