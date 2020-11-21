@@ -15,8 +15,8 @@ const questionsValidator = require('./validators/Questionsstore');
 const userLessonsValidator = require('./validators/User_lessons_store');
 const userQuestionsValidator = require('./validators/User_questions_store');
 
-const authMiddleware = require('./middlewares/auth');
-const roleMiddleware = require('./middlewares/role'); 
+//const authMiddleware = require('./middlewares/auth');
+//const roleMiddleware = require('./middlewares/role'); 
 
 const routes = express.Router();
 
@@ -49,12 +49,12 @@ routes.post('/questions', questionsValidator, QuestionController.store);
 routes.patch('/questions/:id', questionsValidator, QuestionController.update);
 routes.delete('/questions/:id', QuestionController.delete);
 
-routes.get('/userquestions/:id', authMiddleware, UserQuestionsController.index);
-routes.post('/userquestions', authMiddleware, userQuestionsValidator, UserQuestionsController.store);
-routes.delete('/userquestions/:user_id/:question_id', authMiddleware, UserQuestionsController.delete);
+routes.get('/userquestions/:id', /*authMiddleware,*/ UserQuestionsController.index);
+routes.post('/userquestions', /*authMiddleware,*/ userQuestionsValidator, UserQuestionsController.store);
+routes.delete('/userquestions/:user_id/:question_id', /*authMiddleware,*/ UserQuestionsController.delete);
 
-routes.get('/userlessons/:id', authMiddleware, UserLessonsController.index);
-routes.post('/userlessons', authMiddleware, userLessonsValidator, UserLessonsController.store);
-routes.delete('/userlessons/:user_id/:lesson_id', authMiddleware, UserLessonsController.delete); 
+routes.get('/userlessons/:id', /*authMiddleware,*/ UserLessonsController.index);
+routes.post('/userlessons', /*authMiddleware,*/ userLessonsValidator, UserLessonsController.store);
+routes.delete('/userlessons/:user_id/:lesson_id', /*authMiddleware,*/ UserLessonsController.delete); 
 
 module.exports = routes;
