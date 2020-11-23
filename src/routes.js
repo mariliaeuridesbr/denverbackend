@@ -1,5 +1,5 @@
 const express = require('express');
-//const acl = require("express-acl");
+const acl = require("express-acl");
 
 const UserController = require('./controllers/UserController');
 const LessonController = require('./controllers/LessonController');
