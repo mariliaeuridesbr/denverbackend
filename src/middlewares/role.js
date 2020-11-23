@@ -1,4 +1,4 @@
-/*const User = require('../models/User');
+const User = require('../models/User');
 const Role = require('../models/Role');
 
 async function role (req, res, next){
@@ -24,4 +24,4 @@ async function role (req, res, next){
     }
 }
 
-module.exports = role;*/
+module.exports = role;
