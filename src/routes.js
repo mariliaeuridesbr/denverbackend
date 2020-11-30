@@ -8,7 +8,6 @@ const SessionController = require('./controllers/SessionController');
 const UserQuestionsController = require('./controllers/UserQuestionsController');
 const UserLessonsController = require('./controllers/UserLessonsController');
 const RolesController = require('./controllers/RolesController');
-
 const userValidator = require('./validators/Userstore');
 const lessonsValidator = require('./validators/Lessonsstore');
 const questionsValidator = require('./validators/Questionsstore');
@@ -16,7 +15,7 @@ const userLessonsValidator = require('./validators/User_lessons_store');
 const userQuestionsValidator = require('./validators/User_questions_store');
 
 const authMiddleware = require('./middlewares/auth');
-const roleMiddleware = require('./middlewares/role'); 
+const roleMiddleware = require('./middlewares/role');
 
 const routes = express.Router();
 
@@ -31,6 +30,8 @@ routes.use((req, res, next) => {console.log('oi'); return next()})
 routes.use(roleMiddleware);
 routes.use(acl.authorize);
 
+
+routes.get('/users/currentuser', UserController.currentUser);
 routes.get('/users', UserController.index);
 routes.post('/users', userValidator, UserController.store);
 routes.patch('/users/:id', userValidator, UserController.update);

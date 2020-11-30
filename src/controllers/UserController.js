@@ -7,6 +7,13 @@ module.exports = {
 
         return res.json(users);
     },
+    async currentUser (req, res){
+        const id = req.id;
+
+        const user = await User.findOne({ where: { id }});
+    
+        return res.json(user);
+    },
     async store (req, res) {
         const { name, age, email, password, image, birthdate } = req.body;
 

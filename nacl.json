@@ -41,7 +41,13 @@
           "resource": "questions/*",
           "methods": ["GET"],
           "action": "allow"
-        }        
+        },
+        {
+          "resource": "users/currentuser",
+          "methods": ["GET"],
+          "action": "allow"
+        }
+        
       ]
     },
     {
@@ -62,6 +68,7 @@
           "methods": ["POST"],
           "action": "allow"
         }
+        
       ]
     }
   ]
