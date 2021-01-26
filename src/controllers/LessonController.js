@@ -6,6 +6,13 @@ module.exports = {
 
         return res.json(lessons);
     },
+    async getLesson(req,res){
+        const { id } = req.params;
+
+        const lesson = await Lessons.findOne({ where: { id }});
+
+        return res.json(lesson);
+    },
     async store (req, res) {
         const { title, description, video } = req.body;
 

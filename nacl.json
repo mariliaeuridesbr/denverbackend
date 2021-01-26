@@ -68,7 +68,6 @@
           "methods": ["POST"],
           "action": "allow"
         }
-        
       ]
     }
   ]

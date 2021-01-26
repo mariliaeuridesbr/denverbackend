@@ -30,7 +30,6 @@ routes.use((req, res, next) => {console.log('oi'); return next()})
 routes.use(roleMiddleware);
 routes.use(acl.authorize);
 
-
 routes.get('/users/currentuser', UserController.currentUser);
 routes.get('/users', UserController.index);
 routes.post('/users', userValidator, UserController.store);
@@ -41,6 +40,7 @@ routes.get('/role/:id', RolesController.index);
 routes.patch('/role/:id', RolesController.update);
 
 routes.get('/lessons', LessonController.index);
+routes.get('/lessons/:id', LessonController.getLesson);
 routes.post('/lessons', lessonsValidator, LessonController.store);
 routes.patch('/lessons/:id', lessonsValidator, LessonController.update);
 routes.delete('/lessons/:id', LessonController.delete);
